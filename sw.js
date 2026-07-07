@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-card-v1";
+const CACHE_NAME = "my-card-v3";
 const ASSETS = [
   "./",
   "index.html",
@@ -26,9 +26,14 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+  const requestUrl = new URL(event.request.url);
+  if (requestUrl.origin !== self.location.origin) return;
   event.respondWith(
     caches.match(event.request).then((cached) =>
-      cached || fetch(event.request).catch(() => caches.match("index.html"))
+      cached || fetch(event.request).catch(() => {
+        if (event.request.mode === "navigate") return caches.match("index.html");
+        return caches.match("index.html");
+      })
     )
   );
 });
