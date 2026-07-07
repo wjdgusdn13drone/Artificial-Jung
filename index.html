@@ -8,6 +8,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="정현우 명함">
   <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="내 명함">
+  <meta name="msapplication-TileColor" content="#243574">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
   <title>정현우 디지털 명함</title>
   <style>
     :root {
@@ -391,6 +397,12 @@
         saveCardButton.textContent = original;
       }
     });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(console.error);
+      });
+    }
   </script>
 </body>
 </html>
