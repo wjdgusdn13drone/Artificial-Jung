@@ -1,11 +1,20 @@
-const CACHE_NAME = "my-card-v3";
+const CACHE_NAME = "my-card-v9";
 const ASSETS = [
   "./",
   "index.html",
   "manifest.webmanifest",
   "icon-180.png",
   "icon-192.png",
-  "icon-512.png"
+  "icon-512.png",
+  "icon-ui-language.png",
+  "icon-ui-contact-save.png",
+  "icon-ui-call.png",
+  "icon-ui-card-save.png",
+  "icon-ui-brochure.png",
+  "icon-ui-mobile.png",
+  "icon-ui-email.png",
+  "icon-ui-website.png",
+  "icon-ui-address.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -30,9 +39,9 @@ self.addEventListener("fetch", (event) => {
   if (requestUrl.origin !== self.location.origin) return;
   event.respondWith(
     caches.match(event.request).then((cached) =>
-      cached || fetch(event.request).catch(() => {
+      cached || fetch(event.request).catch((error) => {
         if (event.request.mode === "navigate") return caches.match("index.html");
-        return caches.match("index.html");
+        throw error;
       })
     )
   );

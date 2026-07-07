@@ -15,13 +15,15 @@
   <style>
     :root {
       --ink: #111827;
-      --muted: #667085;
-      --line: #d9dfec;
-      --brand: #293373;
-      --accent: #0f7c8a;
-      --paper: #f5f7fb;
+      --muted: #6B7280;
+      --line: rgba(46, 52, 125, 0.12);
+      --brand: #2E347D;
+      --deep-brand: #1F245F;
+      --accent: #FF5A5F;
+      --paper: #F3F4F7;
+      --glass: rgba(255, 255, 255, 0.78);
       --card: #ffffff;
-      --shadow: 0 24px 60px rgba(18, 26, 58, 0.16);
+      --shadow: 0 28px 80px rgba(31, 36, 95, 0.13);
     }
 
     * { box-sizing: border-box; }
@@ -33,8 +35,8 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(15, 124, 138, 0.12), transparent 34rem),
-        linear-gradient(145deg, #eef2f8 0%, #f9fbff 58%, #eef3fb 100%);
+        linear-gradient(135deg, rgba(46, 52, 125, 0.10) 0%, rgba(255, 255, 255, 0) 42%),
+        linear-gradient(180deg, #fbfbfd 0%, var(--paper) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -42,16 +44,18 @@
     }
 
     main {
-      width: min(980px, 100%);
+      width: min(1040px, 100%);
     }
 
     .business-card {
       width: 100%;
-      background: var(--card);
-      border: 1px solid rgba(41, 51, 115, 0.13);
-      border-radius: 8px;
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 28px;
       box-shadow: var(--shadow);
-      padding: clamp(20px, 4vw, 42px);
+      padding: clamp(24px, 4vw, 48px);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(240px, 0.62fr);
       grid-template-areas:
@@ -59,7 +63,7 @@
         "identity qr"
         "contacts qr"
         "buttons buttons";
-      gap: clamp(18px, 3vw, 32px);
+      gap: clamp(20px, 3vw, 36px);
       position: relative;
       overflow: hidden;
     }
@@ -69,14 +73,14 @@
       position: absolute;
       inset: 0 0 auto 0;
       height: 8px;
-      background: linear-gradient(90deg, var(--brand), var(--accent));
+      background: linear-gradient(90deg, var(--deep-brand), var(--brand));
     }
 
     .brand { grid-area: brand; align-self: start; }
 
     .brand-logo {
       display: block;
-      width: min(290px, 72vw);
+      width: min(275px, 72vw);
       height: auto;
     }
 
@@ -87,7 +91,8 @@
       aspect-ratio: 1 / 1;
       border-radius: 8px;
       overflow: hidden;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 16px 36px rgba(31, 36, 95, 0.13);
       background: #fff;
     }
 
@@ -103,25 +108,25 @@
 
     .name {
       margin: 0;
-      font-size: clamp(46px, 8vw, 78px);
+      font-size: clamp(48px, 8vw, 78px);
       line-height: 0.98;
       font-weight: 900;
       letter-spacing: 0;
-      color: var(--brand);
+      color: var(--deep-brand);
     }
 
     .role {
-      margin: 18px 0 0;
-      font-size: clamp(22px, 3.2vw, 34px);
+      margin: 16px 0 0;
+      font-size: clamp(21px, 3vw, 32px);
       line-height: 1.16;
       font-weight: 800;
     }
 
     .headline {
       margin: 14px 0 0;
-      font-size: clamp(18px, 2.5vw, 27px);
+      font-size: clamp(18px, 2.4vw, 25px);
       line-height: 1.3;
-      color: var(--accent);
+      color: var(--brand);
       font-weight: 850;
     }
 
@@ -141,29 +146,33 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
-      padding: clamp(16px, 2.5vw, 24px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fbfcff;
+      gap: 16px;
+      padding: clamp(18px, 2.6vw, 26px);
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 18px 44px rgba(31, 36, 95, 0.12);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
     }
 
     .qr-title {
       margin: 0;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
-      color: var(--brand);
+      color: var(--deep-brand);
     }
 
     .qr-box {
-      width: min(100%, 290px);
+      width: min(100%, 286px);
       aspect-ratio: 1 / 1;
       display: grid;
       place-items: center;
-      padding: 10px;
+      padding: 12px;
       background: #fff;
-      border: 1px solid #e6eaf2;
-      border-radius: 8px;
+      border: 1px solid rgba(46, 52, 125, 0.12);
+      border-radius: 22px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 12px 30px rgba(31, 36, 95, 0.08);
     }
 
     #qrcode, #qrcode img {
@@ -177,73 +186,188 @@
       object-fit: contain;
     }
 
+    .catalog-link {
+      width: 100%;
+      min-height: 46px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--brand);
+      border: 1px solid rgba(46, 52, 125, 0.14);
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 10px 26px rgba(31, 36, 95, 0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .catalog-link::before {
+      content: "";
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+      flex: 0 0 auto;
+      background: url("icon-ui-brochure.png") center / contain no-repeat;
+      filter: drop-shadow(0 5px 10px rgba(31, 36, 95, 0.12));
+    }
+
     .contacts {
       grid-area: contacts;
       display: grid;
-      gap: 9px;
+      gap: 0;
       align-self: start;
-      font-size: clamp(15px, 2vw, 18px);
+      font-size: clamp(15px, 2vw, 17px);
       line-height: 1.35;
+      border-top: 1px solid #edf0f6;
+      border-bottom: 1px solid #edf0f6;
+      padding: 14px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 16px 36px rgba(31, 36, 95, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .contact-row {
       display: grid;
-      grid-template-columns: 84px minmax(0, 1fr);
-      gap: 12px;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 14px;
       align-items: start;
+      padding: 10px 0;
+      border-bottom: 1px solid #edf0f6;
+    }
+
+    .contact-row:last-child {
+      border-bottom: 0;
     }
 
     .contact-label {
-      color: var(--brand);
+      color: var(--muted);
       font-weight: 850;
+      font-size: 0.88em;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
     }
+
+    .contact-label::before {
+      content: "";
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      border-radius: 7px;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      filter: drop-shadow(0 5px 9px rgba(31, 36, 95, 0.13));
+    }
+
+    #mobileLabel::before { background-image: url("icon-ui-mobile.png"); }
+    #emailLabel::before { background-image: url("icon-ui-email.png"); }
+    #webLabel::before { background-image: url("icon-ui-website.png"); }
+    #addressLabel::before { background-image: url("icon-ui-address.png"); }
 
     .contact-value {
       color: var(--ink);
       text-decoration: none;
       overflow-wrap: anywhere;
-      font-weight: 650;
+      font-weight: 680;
     }
 
     .buttons {
       grid-area: buttons;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 2px;
+      gap: 12px;
+      margin-top: 0;
+      padding: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.60);
+      box-shadow: 0 22px 54px rgba(31, 36, 95, 0.16);
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
     }
 
     .button {
       appearance: none;
-      border: 0;
-      border-radius: 8px;
-      min-height: 52px;
-      padding: 14px 16px;
-      font-size: 16px;
+      border: 1px solid rgba(46, 52, 125, 0.12);
+      border-radius: 24px;
+      min-height: 68px;
+      padding: 10px 10px 11px;
+      font-size: 12px;
       font-weight: 850;
       text-decoration: none;
       display: inline-flex;
+      flex-direction: column;
+      gap: 6px;
       align-items: center;
       justify-content: center;
       text-align: center;
       cursor: pointer;
-      background: var(--brand);
-      color: #fff;
-      box-shadow: 0 10px 26px rgba(41, 51, 115, 0.18);
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--deep-brand);
+      box-shadow: 0 10px 24px rgba(31, 36, 95, 0.08);
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .button::before {
+      content: "";
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      box-shadow: 0 8px 18px rgba(31, 36, 95, 0.12);
+    }
+
+    #toggleLanguage::before {
+      background-image: url("icon-ui-language.png");
+    }
+
+    #saveContact::before {
+      background-image: url("icon-ui-contact-save.png");
+    }
+
+    #callButton::before {
+      background-image: url("icon-ui-call.png");
+    }
+
+    #saveCardImage::before {
+      background-image: url("icon-ui-card-save.png");
+    }
+
+    .button:hover,
+    .catalog-link:hover,
+    .lang-option:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(31, 36, 95, 0.13);
     }
 
     .button.secondary {
       color: var(--brand);
-      background: #eef2ff;
+      background: rgba(255, 255, 255, 0.88);
       box-shadow: none;
-      border: 1px solid #dce3ff;
+      border: 1px solid rgba(46, 52, 125, 0.12);
     }
 
     .button.ghost {
-      color: var(--accent);
-      background: #eef9fb;
+      color: var(--brand);
+      background: rgba(255, 255, 255, 0.88);
       box-shadow: none;
-      border: 1px solid #cfe9ed;
+      border: 1px solid rgba(46, 52, 125, 0.12);
     }
 
     .language-control {
@@ -260,14 +384,16 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: calc(100% + 8px);
+      bottom: calc(100% + 7px);
       display: none;
       gap: 6px;
       padding: 8px;
-      border: 1px solid #dce3ff;
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: 0 16px 34px rgba(18, 26, 58, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 42px rgba(31, 36, 95, 0.15);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
       z-index: 5;
     }
 
@@ -278,12 +404,12 @@
     .lang-option {
       appearance: none;
       border: 0;
-      border-radius: 7px;
+      border-radius: 16px;
       min-height: 42px;
       padding: 10px 12px;
-      background: #f6f8ff;
+      background: rgba(255, 255, 255, 0.72);
       color: var(--brand);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 850;
       cursor: pointer;
     }
@@ -291,6 +417,12 @@
     .lang-option.active {
       background: var(--brand);
       color: #ffffff;
+    }
+
+    .button:active,
+    .catalog-link:active,
+    .lang-option:active {
+      transform: translateY(1px);
     }
 
     .toast {
@@ -318,7 +450,13 @@
     }
 
     @media (max-width: 720px) {
-      body { align-items: stretch; padding: 10px; }
+      body {
+        align-items: stretch;
+        padding: 10px 10px max(12px, env(safe-area-inset-bottom));
+        background:
+          linear-gradient(145deg, rgba(46, 52, 125, 0.11) 0%, rgba(255, 255, 255, 0) 46%),
+          #f5f5f7;
+      }
 
       main { min-height: 100%; display: flex; align-items: center; }
 
@@ -333,33 +471,58 @@
           "buttons";
         gap: 16px;
         min-height: calc(100svh - 20px);
-        padding: 24px 18px 20px;
+        padding: 22px 16px 16px;
+        border-radius: 28px;
       }
 
-      .brand-logo { width: min(250px, 80vw); }
+      .brand-logo { width: min(232px, 78vw); }
 
-      .photo-box {
-        justify-self: start;
-        width: clamp(96px, 28vw, 126px);
-      }
+      .photo-box { justify-self: start; width: clamp(96px, 28vw, 124px); border-radius: 22px; }
 
-      .name { font-size: clamp(44px, 15vw, 66px); }
+      .name { font-size: clamp(42px, 14vw, 62px); }
 
-      .role { font-size: clamp(22px, 7vw, 30px); margin-top: 12px; }
+      .role { font-size: clamp(21px, 6.5vw, 28px); margin-top: 12px; }
 
       .headline { font-size: clamp(18px, 5vw, 23px); }
 
       .sub { font-size: 14px; line-height: 1.48; }
 
-      .qr-panel { padding: 14px; }
+      .qr-panel { padding: 16px; gap: 13px; border-radius: 24px; }
 
-      .qr-box { width: min(78vw, 300px); }
+      .qr-box { width: min(74vw, 286px); border-radius: 20px; }
 
-      .contact-row { grid-template-columns: 76px minmax(0, 1fr); gap: 8px; }
+      .contact-row { grid-template-columns: 104px minmax(0, 1fr); gap: 10px; padding: 9px 0; }
 
-      .buttons { grid-template-columns: 1fr; }
+      .contacts { padding: 12px 14px; border-radius: 22px; }
 
-      .button { min-height: 50px; font-size: 15px; }
+      .buttons {
+        position: sticky;
+        bottom: max(10px, env(safe-area-inset-bottom));
+        z-index: 8;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        padding: 10px;
+        border-radius: 30px;
+      }
+
+      .button {
+        min-height: 68px;
+        padding: 9px 5px 10px;
+        font-size: 10.5px;
+        line-height: 1.15;
+        word-break: keep-all;
+      }
+
+      .button::before {
+        width: 31px;
+        height: 31px;
+        border-radius: 12px;
+      }
+
+      .language-menu {
+        bottom: calc(100% + 8px);
+        top: auto;
+      }
     }
   </style>
 </head>
@@ -384,6 +547,7 @@
       <aside class="qr-panel" aria-label="연락처 저장 QR 코드">
         <p class="qr-title" id="qrTitle">QR로 연락처 저장</p>
         <div class="qr-box"><div id="qrcode" aria-live="polite"><img class="qr-static" id="shopQrImage" src="data:image/png;base64,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" alt="드로니아 쇼핑몰 QR 코드"></div></div>
+        <a class="catalog-link" id="catalogLink" href="dronia-catalog.pdf" target="_blank" rel="noreferrer">드로니아 소개서 보기</a>
       </aside>
 
       <section class="contacts" aria-label="연락처">
@@ -399,6 +563,8 @@
           <div class="language-menu" id="languageMenu" role="menu" aria-label="언어 선택">
             <button class="lang-option active" type="button" data-lang="ko" role="menuitem">한국어</button>
             <button class="lang-option" type="button" data-lang="en" role="menuitem">English</button>
+            <button class="lang-option" type="button" data-lang="zh" role="menuitem">中文(简体)</button>
+            <button class="lang-option" type="button" data-lang="ja" role="menuitem">日本語</button>
           </div>
         </div>
         <a class="button" id="saveContact" download="정현우_드로니아.vcf" href="#">연락처 저장</a>
@@ -429,6 +595,7 @@
         url: "https://dronedu.kr",
         address: "31538 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호",
         qrTitle: "드로니아 쇼핑몰 QR",
+        catalogLabel: "드로니아 소개서 보기",
         labels: { mobile: "휴대폰", email: "이메일", web: "웹사이트", address: "주소" },
         buttons: { contact: "연락처 저장", call: "전화하기", card: "명함 저장", language: "[언어 / Language]" },
         toast: { saving: "이미지 만드는 중...", saved: "저장했어요 — 다운로드 폴더 확인", shared: "공유 시트를 열었어요", failed: "저장을 다시 시도해주세요" },
@@ -452,11 +619,60 @@
         url: "https://dronedu.kr",
         address: "Room E407, Entrepreneur Hall, 22-12 Suncheonhyang-ro, Asan-si, Chungcheongnam-do 31538, Korea",
         qrTitle: "Dronia Shopping Mall QR",
+        catalogLabel: "View Dronia Brochure",
         labels: { mobile: "Mobile", email: "Email", web: "Website", address: "Address" },
         buttons: { contact: "Save Contact", call: "Call", card: "Save Card", language: "[언어 / Language]" },
         toast: { saving: "Creating image...", saved: "Saved — check your Downloads folder", shared: "Share sheet opened", failed: "Please try saving again" },
         vcfFilename: "Hyunwoo_Jung_Dronia.vcf",
         imageFilename: "Hyunwoo_Jung_Dronia_Card.png"
+      },
+      zh: {
+        htmlLang: "zh-CN",
+        name: "郑贤宇",
+        n: "郑;贤宇;;;",
+        role: "Dronia有限公司 经理",
+        headline: "无人机与AI专业企业",
+        sub: "无人机国家资格证培训、教育训练设备制造、无人机活动运营、无人机运动R&D及内容开发、AI / Vibe Coding教育",
+        org: "Dronia有限公司",
+        title: "经理",
+        mobile: "010-7531-6820",
+        phone: "041-531-0912",
+        fax: "0504-337-0911",
+        email: "wjdgusdn13@naver.com",
+        web: "dronedu.kr",
+        url: "https://dronedu.kr",
+        address: "韩国忠清南道牙山市顺天乡路22-12 Entrepreneur Hall E407室 31538",
+        qrTitle: "Dronia购物商城QR",
+        catalogLabel: "查看Dronia介绍书",
+        labels: { mobile: "手机", email: "邮箱", web: "网站", address: "地址" },
+        buttons: { contact: "保存联系人", call: "拨打电话", card: "保存名片", language: "[언어 / Language]" },
+        toast: { saving: "正在生成图片...", saved: "已保存 — 请查看下载文件夹", shared: "已打开分享菜单", failed: "请重新尝试保存" },
+        vcfFilename: "Zheng_Xianyu_Dronia.vcf",
+        imageFilename: "Zheng_Xianyu_Dronia_Card.png"
+      },
+      ja: {
+        htmlLang: "ja",
+        name: "チョン・ヒョヌ",
+        n: "チョン;ヒョヌ;;;",
+        role: "Dronia株式会社 マネージャー",
+        headline: "ドローン・AI専門企業",
+        sub: "ドローン国家資格教育、教育訓練機器の製造、ドローンイベント運営、ドローンスポーツR&Dおよびコンテンツ開発、AI / Vibe Coding教育",
+        org: "Dronia株式会社",
+        title: "マネージャー",
+        mobile: "010-7531-6820",
+        phone: "041-531-0912",
+        fax: "0504-337-0911",
+        email: "wjdgusdn13@naver.com",
+        web: "dronedu.kr",
+        url: "https://dronedu.kr",
+        address: "韓国 忠清南道 牙山市 順天郷路22-12 Entrepreneur Hall E407号 31538",
+        qrTitle: "DroniaショッピングモールQR",
+        catalogLabel: "Dronia紹介資料を見る",
+        labels: { mobile: "携帯電話", email: "メール", web: "ウェブサイト", address: "住所" },
+        buttons: { contact: "連絡先を保存", call: "電話する", card: "名刺を保存", language: "[언어 / Language]" },
+        toast: { saving: "画像を作成中...", saved: "保存しました — ダウンロードフォルダをご確認ください", shared: "共有シートを開きました", failed: "もう一度保存をお試しください" },
+        vcfFilename: "Hyunwoo_Jung_Dronia_ja.vcf",
+        imageFilename: "Hyunwoo_Jung_Dronia_Card_ja.png"
       }
     };
 
@@ -470,6 +686,7 @@
       sub: document.getElementById("cardSub"),
       qrTitle: document.getElementById("qrTitle"),
       qrcode: document.getElementById("qrcode"),
+      catalogLink: document.getElementById("catalogLink"),
       mobileLabel: document.getElementById("mobileLabel"),
       mobileValue: document.getElementById("mobileValue"),
       emailLabel: document.getElementById("emailLabel"),
@@ -527,6 +744,7 @@
       els.headline.textContent = data.headline;
       els.sub.textContent = data.sub;
       els.qrTitle.textContent = data.qrTitle;
+      els.catalogLink.textContent = data.catalogLabel;
       els.mobileLabel.textContent = data.labels.mobile;
       els.emailLabel.textContent = data.labels.email;
       els.webLabel.textContent = data.labels.web;
@@ -635,70 +853,98 @@
       canvas.height = 960;
       const ctx = canvas.getContext("2d");
 
-      ctx.fillStyle = "#f5f7fb";
+      ctx.fillStyle = "#f5f5f7";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#ffffff";
-      drawRoundRect(ctx, 80, 70, 1440, 820, 22);
+      drawRoundRect(ctx, 86, 76, 1428, 808, 8);
       ctx.fill();
+      ctx.strokeStyle = "#d9dfec";
+      ctx.lineWidth = 2;
+      drawRoundRect(ctx, 86, 76, 1428, 808, 8);
+      ctx.stroke();
       ctx.fillStyle = "#293373";
-      drawRoundRect(ctx, 80, 70, 1440, 16, 8);
+      drawRoundRect(ctx, 86, 76, 1428, 14, 7);
       ctx.fill();
-      ctx.fillStyle = "#0f7c8a";
-      ctx.fillRect(80, 70, 560, 16);
 
-      drawContain(ctx, logo, 150, 135, 440, 112);
+      drawContain(ctx, logo, 150, 132, 410, 104);
       ctx.save();
-      drawRoundRect(ctx, 1240, 122, 160, 160, 12);
+      drawRoundRect(ctx, 1262, 126, 148, 148, 8);
       ctx.clip();
-      drawCover(ctx, profile, 1240, 122, 160, 160);
+      drawCover(ctx, profile, 1262, 126, 148, 148);
       ctx.restore();
       ctx.strokeStyle = "#d9dfec";
       ctx.lineWidth = 2;
-      drawRoundRect(ctx, 1240, 122, 160, 160, 12);
+      drawRoundRect(ctx, 1262, 126, 148, 148, 8);
       ctx.stroke();
 
       ctx.fillStyle = "#293373";
-      ctx.font = "900 92px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-      ctx.fillText(data.name, 150, 380);
+      ctx.font = "900 88px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      ctx.fillText(data.name, 150, 364);
       ctx.fillStyle = "#111827";
-      ctx.font = "800 46px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-      wrapText(ctx, data.role, 150, 452, 760, 56, 2);
-      ctx.fillStyle = "#0f7c8a";
-      ctx.font = "850 34px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-      wrapText(ctx, data.headline, 150, 544, 740, 44, 2);
-      ctx.fillStyle = "#667085";
-      ctx.font = "500 25px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-      const afterSub = wrapText(ctx, data.sub, 150, 608, 780, 36, 3);
-
+      ctx.font = "800 42px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      wrapText(ctx, data.role, 150, 430, 760, 52, 2);
       ctx.fillStyle = "#293373";
-      ctx.font = "800 25px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-      ctx.fillText(data.labels.mobile, 150, afterSub + 54);
-      ctx.fillText(data.labels.email, 150, afterSub + 96);
-      ctx.fillText(data.labels.web, 150, afterSub + 138);
-      ctx.fillText(data.labels.address, 150, afterSub + 180);
-      ctx.fillStyle = "#111827";
-      ctx.font = "650 26px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-      ctx.fillText(data.mobile, 270, afterSub + 54);
-      ctx.fillText(data.email, 270, afterSub + 96);
-      ctx.fillText(data.web, 270, afterSub + 138);
-      ctx.font = "650 23px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-      wrapText(ctx, data.address, 270, afterSub + 180, 660, 32, 2);
+      ctx.font = "850 32px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      wrapText(ctx, data.headline, 150, 522, 740, 42, 2);
+      ctx.fillStyle = "#667085";
+      ctx.font = "500 24px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      const afterSub = wrapText(ctx, data.sub, 150, 584, 780, 34, 3);
 
-      ctx.fillStyle = "#fbfcff";
-      drawRoundRect(ctx, 1030, 330, 360, 410, 14);
+      const contactY = Math.min(afterSub + 42, 690);
+      ctx.strokeStyle = "#edf0f6";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(150, contactY - 30);
+      ctx.lineTo(910, contactY - 30);
+      ctx.stroke();
+      ctx.fillStyle = "#5f6680";
+      ctx.font = "800 23px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      ctx.fillText(data.labels.mobile, 150, contactY + 10);
+      ctx.fillText(data.labels.email, 150, contactY + 50);
+      ctx.fillText(data.labels.web, 150, contactY + 90);
+      ctx.fillText(data.labels.address, 150, contactY + 130);
+      ctx.fillStyle = "#111827";
+      ctx.font = "680 25px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      ctx.fillText(data.mobile, 274, contactY + 10);
+      ctx.fillText(data.email, 274, contactY + 50);
+      ctx.fillText(data.web, 274, contactY + 90);
+      ctx.font = "680 22px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      wrapText(ctx, data.address, 274, contactY + 130, 650, 30, 2);
+
+      ctx.fillStyle = "#fafbff";
+      drawRoundRect(ctx, 1028, 318, 366, 428, 8);
       ctx.fill();
       ctx.strokeStyle = "#d9dfec";
       ctx.lineWidth = 2;
-      drawRoundRect(ctx, 1030, 330, 360, 410, 14);
+      drawRoundRect(ctx, 1028, 318, 366, 428, 8);
       ctx.stroke();
       ctx.fillStyle = "#293373";
-      ctx.font = "800 26px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+      ctx.font = "800 24px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText(data.qrTitle, 1210, 386);
+      ctx.fillText(data.qrTitle, 1211, 374);
       ctx.textAlign = "left";
       ctx.fillStyle = "#ffffff";
-      ctx.fillRect(1085, 420, 250, 250);
-      if (qrDrawable) ctx.drawImage(qrDrawable, 1085, 420, 250, 250);
+      ctx.fillRect(1085, 406, 252, 252);
+      ctx.strokeStyle = "#e5e7ef";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(1085, 406, 252, 252);
+      if (qrDrawable) ctx.drawImage(qrDrawable, 1085, 406, 252, 252);
+      ctx.fillStyle = "#ffffff";
+      drawRoundRect(ctx, 1085, 680, 252, 44, 8);
+      ctx.fill();
+      ctx.strokeStyle = "rgba(41, 51, 115, 0.22)";
+      ctx.lineWidth = 2;
+      drawRoundRect(ctx, 1085, 680, 252, 44, 8);
+      ctx.stroke();
+      ctx.fillStyle = "#293373";
+      let catalogFontSize = 20;
+      do {
+        ctx.font = "800 " + catalogFontSize + "px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+        catalogFontSize -= 1;
+      } while (ctx.measureText(data.catalogLabel).width > 220 && catalogFontSize > 12);
+      ctx.textAlign = "center";
+      ctx.fillText(data.catalogLabel, 1210, 718);
+      ctx.textAlign = "left";
 
       return new Promise((resolve) => canvas.toBlob(resolve, "image/png", 0.95));
     }
