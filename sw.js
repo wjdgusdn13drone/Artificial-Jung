@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-card-v10";
+const CACHE_NAME = "my-card-v15";
 const ASSETS = [
   "./",
   "index.html",
@@ -14,7 +14,12 @@ const ASSETS = [
   "icon-ui-mobile.png",
   "icon-ui-email.png",
   "icon-ui-website.png",
-  "icon-ui-address.png"
+  "icon-ui-address.png",
+  "icon-social-facebook.png",
+  "icon-social-instagram.png",
+  "icon-social-blog.png",
+  "icon-social-github.png",
+  "icon-social-threads.png"
 ];
 
 self.addEventListener("install", (event) => {

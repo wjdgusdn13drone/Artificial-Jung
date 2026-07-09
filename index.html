@@ -41,10 +41,14 @@
       align-items: center;
       justify-content: center;
       padding: max(18px, env(safe-area-inset-top)) 16px max(18px, env(safe-area-inset-bottom));
+      min-height: 100svh;
     }
 
     main {
       width: min(1040px, 100%);
+      min-height: min(760px, calc(100svh - 36px));
+      display: flex;
+      align-items: stretch;
     }
 
     .business-card {
@@ -57,15 +61,17 @@
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(240px, 0.62fr);
+      grid-template-columns: minmax(0, 1fr) clamp(170px, 20vw, 220px) minmax(220px, 0.72fr);
       grid-template-areas:
-        "brand photo"
-        "identity qr"
-        "contacts qr"
-        "buttons buttons";
-      gap: clamp(20px, 3vw, 36px);
+        "brand photo qr"
+        "identity photo qr"
+        "contacts contacts qr"
+        "buttons buttons buttons";
+      column-gap: clamp(18px, 2.6vw, 32px);
+      row-gap: clamp(16px, 2.4vw, 28px);
       position: relative;
       overflow: hidden;
+      min-height: 100%;
     }
 
     .business-card::before {
@@ -80,16 +86,17 @@
 
     .brand-logo {
       display: block;
-      width: min(275px, 72vw);
+      width: clamp(136px, 18vw, 188px);
       height: auto;
     }
 
     .photo-box {
       grid-area: photo;
-      justify-self: end;
-      width: clamp(108px, 16vw, 148px);
+      justify-self: center;
+      align-self: center;
+      width: clamp(170px, 20vw, 220px);
       aspect-ratio: 1 / 1;
-      border-radius: 8px;
+      border-radius: 18px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.75);
       box-shadow: 0 16px 36px rgba(31, 36, 95, 0.13);
@@ -104,7 +111,11 @@
       display: block;
     }
 
-    .identity { grid-area: identity; align-self: end; }
+    .identity {
+      grid-area: identity;
+      align-self: end;
+      min-height: 260px;
+    }
 
     .name {
       margin: 0;
@@ -120,6 +131,11 @@
       font-size: clamp(21px, 3vw, 32px);
       line-height: 1.16;
       font-weight: 800;
+      min-height: 74px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .headline {
@@ -128,6 +144,11 @@
       line-height: 1.3;
       color: var(--brand);
       font-weight: 850;
+      min-height: 66px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .sub {
@@ -137,23 +158,30 @@
       font-size: clamp(14px, 1.8vw, 18px);
       line-height: 1.55;
       word-break: keep-all;
+      min-height: 86px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .qr-panel {
       grid-area: qr;
-      align-self: center;
+      align-self: stretch;
       justify-self: stretch;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
-      padding: clamp(18px, 2.6vw, 26px);
+      gap: 12px;
+      padding: clamp(16px, 2.2vw, 22px);
       border: 1px solid rgba(255, 255, 255, 0.76);
       border-radius: 26px;
       background: rgba(255, 255, 255, 0.62);
       box-shadow: 0 18px 44px rgba(31, 36, 95, 0.12);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
+      max-width: 360px;
+      min-height: 100%;
     }
 
     .qr-title {
@@ -164,11 +192,11 @@
     }
 
     .qr-box {
-      width: min(100%, 286px);
+      width: min(100%, 248px);
       aspect-ratio: 1 / 1;
       display: grid;
       place-items: center;
-      padding: 12px;
+      padding: 8px;
       background: #fff;
       border: 1px solid rgba(46, 52, 125, 0.12);
       border-radius: 22px;
@@ -189,19 +217,19 @@
     .catalog-link {
       width: 100%;
       min-height: 46px;
-      border-radius: 18px;
+      border-radius: 17px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 14px;
+      padding: 10px 14px;
       background: rgba(255, 255, 255, 0.78);
       color: var(--brand);
       border: 1px solid rgba(46, 52, 125, 0.14);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 850;
       text-decoration: none;
       text-align: center;
-      box-shadow: 0 10px 26px rgba(31, 36, 95, 0.08);
+      box-shadow: 0 8px 20px rgba(31, 36, 95, 0.06);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
@@ -215,6 +243,54 @@
       flex: 0 0 auto;
       background: url("icon-ui-brochure.png") center / contain no-repeat;
       filter: drop-shadow(0 5px 10px rgba(31, 36, 95, 0.12));
+    }
+
+    .social-links {
+      width: 100%;
+      display: grid;
+      gap: 8px;
+    }
+
+    .social-link {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(46, 52, 125, 0.12);
+      color: var(--deep-brand);
+      font-size: 15px;
+      font-weight: 850;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(31, 36, 95, 0.06);
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      overflow: hidden;
+    }
+
+    .social-link:hover,
+    .social-link:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 12px 24px rgba(31, 36, 95, 0.10);
+    }
+
+    .social-link img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      flex: 0 0 auto;
+      border-radius: 7px;
+    }
+
+    .social-text {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: center;
     }
 
     .contacts {
@@ -233,6 +309,7 @@
       box-shadow: 0 16px 36px rgba(31, 36, 95, 0.08);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
+      min-height: 238px;
     }
 
     .contact-row {
@@ -280,6 +357,10 @@
       text-decoration: none;
       overflow-wrap: anywhere;
       font-weight: 680;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .buttons {
@@ -458,30 +539,44 @@
           #f5f5f7;
       }
 
-      main { min-height: 100%; display: flex; align-items: center; }
+      main {
+        min-height: calc(100svh - 22px);
+        display: flex;
+        align-items: stretch;
+      }
 
       .business-card {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr) auto;
         grid-template-areas:
-          "brand"
-          "photo"
-          "identity"
-          "qr"
-          "contacts"
-          "buttons";
-        gap: 16px;
-        min-height: calc(100svh - 20px);
-        padding: 22px 16px 16px;
+          "brand photo"
+          "identity identity"
+          "qr qr"
+          "contacts contacts"
+          "buttons buttons";
+        grid-template-rows: auto minmax(216px, auto) auto minmax(224px, auto) auto;
+        gap: 12px;
+        height: calc(100svh - 22px);
+        min-height: 720px;
+        padding: 20px 16px 14px;
         border-radius: 28px;
       }
 
       .brand-logo { width: min(155px, 52vw); }
 
-      .photo-box { justify-self: start; width: clamp(96px, 28vw, 124px); border-radius: 22px; }
+      .photo-box {
+        justify-self: end;
+        align-self: start;
+        width: clamp(118px, 33vw, 154px);
+        border-radius: 22px;
+      }
 
       .name { font-size: clamp(42px, 14vw, 62px); }
 
-      .role { font-size: clamp(21px, 6.5vw, 28px); margin-top: 12px; }
+      .role {
+        font-size: clamp(21px, 6.5vw, 28px);
+        margin-top: 12px;
+        min-height: 64px;
+      }
 
       .headline {
         margin-top: 16px;
@@ -489,6 +584,7 @@
         line-height: 1.22;
         font-weight: 950;
         color: var(--deep-brand);
+        min-height: 74px;
       }
 
       .sub {
@@ -497,23 +593,37 @@
         line-height: 1.55;
         font-weight: 760;
         color: #4b5563;
+        min-height: 90px;
       }
 
       .qr-panel {
-        width: min(100%, 330px);
+        width: min(100%, 360px);
         justify-self: center;
-        padding: 14px;
-        gap: 12px;
+        padding: 16px;
+        gap: 10px;
         border-radius: 24px;
+        min-height: 0;
       }
 
-      .qr-box { width: min(60vw, 232px); border-radius: 20px; }
+      .qr-box { width: min(62vw, 238px); border-radius: 20px; }
 
       .qr-title { font-size: 15px; }
 
       .catalog-link {
+        min-height: 46px;
+        font-size: 15px;
+        padding: 10px 14px;
+      }
+
+      .social-link {
         min-height: 42px;
-        font-size: 13px;
+        padding: 8px 14px;
+        font-size: 15px;
+      }
+
+      .social-link img {
+        width: 28px;
+        height: 28px;
       }
 
       .catalog-link::before {
@@ -523,7 +633,11 @@
 
       .contact-row { grid-template-columns: 104px minmax(0, 1fr); gap: 10px; padding: 9px 0; }
 
-      .contacts { padding: 12px 14px; border-radius: 22px; }
+      .contacts {
+        padding: 12px 14px;
+        border-radius: 22px;
+        min-height: 224px;
+      }
 
       .buttons {
         position: sticky;
@@ -577,14 +691,36 @@
       <aside class="qr-panel" aria-label="연락처 저장 QR 코드">
         <p class="qr-title" id="qrTitle">QR로 연락처 저장</p>
         <div class="qr-box"><div id="qrcode" aria-live="polite"><img class="qr-static" id="shopQrImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWUAAAFlCAIAAAC8527sAAAG/ElEQVR42u3c0W3kNhRAUTurolLLpr7UsikqgFPBei6GEUVR53wb9ogjXPDj+X3++PXzAyD4wyEBkV4AlV4AlV4AlV4AlV4AlV4AlV4AlV4A1fH9z/3759+OEp7j+Oevb57V/QKo9AKo9AKo9AKo9AKo9AKo9AKo9AKojrdP6vPz8wmn/PX1tf45vPyQt/DyJCc8prf6e+4XQKUXQKUXQKUXQKUXQKUXQKUXQKUXQKUXQKUXQHWcd1K3GFIen/8dHxgfP6g9JqlvcQ4Peat/x/0CqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqI4LT2rCLuaHLM4e/w23WIO+wtj7+Iccd+Fjul8AlV4AlV4AlV4AlV4AlV4AlV4AlV4AlV4AlV4A1eGkBq0waj1hs/a4h+zm3pv7BVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVCZB7/ehIHxCSPnFog/gfsFUOkFUOkFUOkFUOkFUOkFUOkFUOkFUOkFUOkFUF05D/6Q4dwV1n9PeIrxgfEJv2GCvd9q9wug0gug0gug0gug0gug0gug0gug0gug0gug0gugOnEefIWF0StYYf33LYa1bzEw/vC32v0CqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqN6fB3/Idu9b2GMv9oTB+QlPsTf3C6DSC6DSC6DSC6DSC6DSC6DSC6DSC6DSC6DSC6B6fx58wi7mCZ9hwojxHkurbzGLvcLXvcI5nPfKuV8AlV4AlV4AlV4AlV4AlV4AlV4AlV4AlV4AlV4A1Yn7wSfMQa/wGSbMpE84KP6vk1zhfTjv63a/ACq9ACq9ACq9ACq9ACq9ACq9ACq9ACq9ACq9AKrjwpMaX9a8wjT3CqPWK+zFXnmrdf8Ne2xatx8cuJ5eAJVeAJVeAJVeAJVeAJVeAJVeAJVeAJVeANX78+ATprlf/okVJspfGv+QtxiUnjBZf4up9r3XwbtfAJVeAJVeAJVeAJVeAJVeAJVeAJVeAJVeAJVeANWJ+8FXGIxdYaJ8hQXi4x7yFBPeyZdW/i8H9wug0gug0gug0gug0gug0gug0gug0gug0gug0gugOi48qQnj3hP+xLhbzCDvsfZ6hce8xUz677hfAJVeAJVeAJVeAJVeAJVeAJVeAJVeAJVeAJVeANWJ8+C3GDEeH/feY5p7DxNeufHvYtyFX7f7BVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVAdK5/UhCnmPdZer7A4e4Wx93G3WN494Rx+x/0CqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqN6fB5+wavmlPVaQr7DlfMJTrDBZv8d3cSH3C6DSC6DSC6DSC6DSC6DSC6DSC6DSC6DSC6DSC6B6fx58j7nXPVaQT3iKCecwboXl3Sv8A8F55+B+AVR6AVR6AVR6AVR6AVR6AVR6AVR6AVR6AVR6AVQn7gd/aYWt1uOPeYunWMGE9d8rHPUKX9Z5B+V+AVR6AVR6AVR6AVR6AVR6AVR6AVR6AVR6AVR6AVTHhSd1i63WK0yU32Ll9PhnWMEt3snxo7YfHDidXgCVXgCVXgCVXgCVXgCVXgCVXgCVXgCVXgDV+/PgE8Z7V9gHPWFQeoUV5Ht8yHF7vNX2gwPX0wug0gug0gug0gug0gug0gug0gug0gug0gugen8efI9Nyrd4ign7wSdMtY9/yHEr/IfBCkf9NvcLoNILoNILoNILoNILoNILoNILoNILoNILoNILoFp6P/gKJow57/En9jDhy5rgvKdwvwAqvQAqvQAqvQAqvQAqvQAqvQAqvQAqvQAqvQCq47yT2mNydvwxx//EQybKJ5zkSxNe2vHHvHBo3f0CqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqPQCqI4LT2qP8d4VnmKP5d0TBsZXOKhbT/e7XwCVXgCVXgCVXgCVXgCVXgCVXgCVXgCVXgCVXgDV4aQGTZjeXeFDjj/FLTaMr/AbJuysf5v7BVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVCZB3+ECXPQt7DHwPhL9oMD19MLoNILoNILoNILoNILoNILoNILoNILoNILoLpyHnzC0uoVrDBiPMGEMecVhtYnDGuPn8N53C+ASi+ASi+ASi+ASi+ASi+ASi+ASi+ASi+ASi+A6sR58D02Sk94zBWmmF+OGE+YQR7/E+O/4RbD+xf+f4D7BVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVDpBVC9Pw/+kO3eL93iHG6xQHwFK8ykr3yS7hdApRdApRdApRdApRdApRdApRdApRdA9fnj10+HBRTuF0ClF0ClF0ClF0ClF0ClF0ClF0ClF0ClF0Dy8fHxH2i7WjEsH8GkAAAAAElFTkSuQmCC" alt="드로니아 쇼핑몰 QR 코드"></div></div>
-        <a class="catalog-link" id="catalogLink" href="dronia-catalog.pdf" target="_blank" rel="noreferrer">드로니아 소개서 보기</a>
+        <a class="catalog-link" id="catalogLink" href="dronia-catalog.pdf" target="_blank" rel="noreferrer">드로니아 브로슈어</a>
+        <div class="social-links" aria-label="소셜 링크">
+          <a class="social-link" href="https://www.instagram.com/j_hwooooo?igsh=MXEyczQ3bmNwajdiYQ%3D%3D&utm_source=qr" target="_blank" rel="noreferrer">
+            <img src="icon-social-instagram.png" alt="">
+            <span class="social-text">인스타그램</span>
+          </a>
+          <a class="social-link" href="https://www.facebook.com/jeonghyeon.u.849731" target="_blank" rel="noreferrer">
+            <img src="icon-social-facebook.png" alt="">
+            <span class="social-text">페이스북</span>
+          </a>
+          <a class="social-link" href="https://blog.naver.com/netsok" target="_blank" rel="noreferrer">
+            <img src="icon-social-blog.png" alt="">
+            <span class="social-text">블로그</span>
+          </a>
+          <a class="social-link" href="https://github.com/wjdgusdn13drone" target="_blank" rel="noreferrer">
+            <img src="icon-social-github.png" alt="">
+            <span class="social-text">깃허브</span>
+          </a>
+          <a class="social-link" href="https://www.threads.com/@j_hwooooo?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noreferrer">
+            <img src="icon-social-threads.png" alt="">
+            <span class="social-text">쓰레드</span>
+          </a>
+        </div>
       </aside>
 
       <section class="contacts" aria-label="연락처">
         <div class="contact-row"><span class="contact-label" id="mobileLabel">휴대폰</span><a class="contact-value" id="mobileValue" href="tel:010-7531-6820">010-7531-6820</a></div>
         <div class="contact-row"><span class="contact-label" id="emailLabel">이메일</span><a class="contact-value" id="emailValue" href="mailto:wjdgusdn13@naver.com">wjdgusdn13@naver.com</a></div>
         <div class="contact-row"><span class="contact-label" id="webLabel">웹사이트</span><a class="contact-value" id="webValue" href="https://dronedu.kr" target="_blank" rel="noreferrer">dronedu.kr</a></div>
-        <div class="contact-row"><span class="contact-label" id="addressLabel">주소</span><span class="contact-value" id="addressValue">31538 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호</span></div>
+        <div class="contact-row"><span class="contact-label" id="addressLabel">주소</span><span class="contact-value" id="addressValue">(31538) 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호</span></div>
       </section>
 
       <nav class="buttons" aria-label="명함 작업">
@@ -623,9 +759,9 @@
         email: "wjdgusdn13@naver.com",
         web: "dronedu.kr",
         url: "https://dronedu.kr",
-        address: "31538 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호",
+        address: "(31538) 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호",
         qrTitle: "드로니아 쇼핑몰 QR",
-        catalogLabel: "드로니아 소개서 보기",
+        catalogLabel: "드로니아 브로슈어",
         labels: { mobile: "휴대폰", email: "이메일", web: "웹사이트", address: "주소" },
         buttons: { contact: "연락처 저장", call: "전화하기", card: "명함 저장", language: "[언어 / Language]" },
         toast: { saving: "이미지 만드는 중...", saved: "저장했어요 — 다운로드 폴더 확인", shared: "공유 시트를 열었어요", failed: "저장을 다시 시도해주세요" },
@@ -647,9 +783,9 @@
         email: "wjdgusdn13@naver.com",
         web: "dronedu.kr",
         url: "https://dronedu.kr",
-        address: "Room E407, Entrepreneur Hall, 22-12 Suncheonhyang-ro, Asan-si, Chungcheongnam-do 31538, Korea",
+        address: "(31538) 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호",
         qrTitle: "Dronia Shopping Mall QR",
-        catalogLabel: "View Dronia Brochure",
+        catalogLabel: "Dronia Brochure",
         labels: { mobile: "Mobile", email: "Email", web: "Website", address: "Address" },
         buttons: { contact: "Save Contact", call: "Call", card: "Save Card", language: "[언어 / Language]" },
         toast: { saving: "Creating image...", saved: "Saved — check your Downloads folder", shared: "Share sheet opened", failed: "Please try saving again" },
@@ -671,7 +807,7 @@
         email: "wjdgusdn13@naver.com",
         web: "dronedu.kr",
         url: "https://dronedu.kr",
-        address: "韩国忠清南道牙山市顺天乡路22-12 Entrepreneur Hall E407室 31538",
+        address: "(31538) 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호",
         qrTitle: "Dronia购物商城QR",
         catalogLabel: "查看Dronia介绍书",
         labels: { mobile: "手机", email: "邮箱", web: "网站", address: "地址" },
@@ -695,7 +831,7 @@
         email: "wjdgusdn13@naver.com",
         web: "dronedu.kr",
         url: "https://dronedu.kr",
-        address: "韓国 忠清南道 牙山市 順天郷路22-12 Entrepreneur Hall E407号 31538",
+        address: "(31538) 충남 아산시 순천향로 22-12 앙뜨레프레너관 E407호",
         qrTitle: "DroniaショッピングモールQR",
         catalogLabel: "Dronia紹介資料を見る",
         labels: { mobile: "携帯電話", email: "メール", web: "ウェブサイト", address: "住所" },
@@ -878,6 +1014,12 @@
       const qrDrawable = await waitForQr();
       const logo = await loadImage(document.querySelector(".brand-logo").src);
       const profile = await loadImage(document.querySelector(".profile-photo").src);
+      const brochureIcon = await loadImage("icon-ui-brochure.png");
+      const instagramIcon = await loadImage("icon-social-instagram.png");
+      const facebookIcon = await loadImage("icon-social-facebook.png");
+      const blogIcon = await loadImage("icon-social-blog.png");
+      const githubIcon = await loadImage("icon-social-github.png");
+      const threadsIcon = await loadImage("icon-social-threads.png");
       const canvas = document.createElement("canvas");
       canvas.width = 1600;
       canvas.height = 960;
@@ -896,15 +1038,15 @@
       drawRoundRect(ctx, 86, 76, 1428, 14, 7);
       ctx.fill();
 
-      drawContain(ctx, logo, 150, 132, 410, 104);
+      drawContain(ctx, logo, 150, 132, 300, 76);
       ctx.save();
-      drawRoundRect(ctx, 1262, 126, 148, 148, 8);
+      drawRoundRect(ctx, 560, 198, 238, 238, 12);
       ctx.clip();
-      drawCover(ctx, profile, 1262, 126, 148, 148);
+      drawCover(ctx, profile, 560, 198, 238, 238);
       ctx.restore();
       ctx.strokeStyle = "#d9dfec";
       ctx.lineWidth = 2;
-      drawRoundRect(ctx, 1262, 126, 148, 148, 8);
+      drawRoundRect(ctx, 560, 198, 238, 238, 12);
       ctx.stroke();
 
       ctx.fillStyle = "#293373";
@@ -942,39 +1084,44 @@
       wrapText(ctx, data.address, 274, contactY + 130, 650, 30, 2);
 
       ctx.fillStyle = "#fafbff";
-      drawRoundRect(ctx, 1028, 318, 366, 428, 8);
+      drawRoundRect(ctx, 1028, 270, 366, 640, 8);
       ctx.fill();
       ctx.strokeStyle = "#d9dfec";
       ctx.lineWidth = 2;
-      drawRoundRect(ctx, 1028, 318, 366, 428, 8);
+      drawRoundRect(ctx, 1028, 270, 366, 640, 8);
       ctx.stroke();
       ctx.fillStyle = "#293373";
       ctx.font = "800 24px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText(data.qrTitle, 1211, 374);
+      ctx.fillText(data.qrTitle, 1211, 326);
       ctx.textAlign = "left";
       ctx.fillStyle = "#ffffff";
-      ctx.fillRect(1085, 406, 252, 252);
+      ctx.fillRect(1092, 358, 238, 238);
       ctx.strokeStyle = "#e5e7ef";
       ctx.lineWidth = 2;
-      ctx.strokeRect(1085, 406, 252, 252);
-      if (qrDrawable) ctx.drawImage(qrDrawable, 1085, 406, 252, 252);
-      ctx.fillStyle = "#ffffff";
-      drawRoundRect(ctx, 1085, 680, 252, 44, 8);
-      ctx.fill();
-      ctx.strokeStyle = "rgba(41, 51, 115, 0.22)";
-      ctx.lineWidth = 2;
-      drawRoundRect(ctx, 1085, 680, 252, 44, 8);
-      ctx.stroke();
-      ctx.fillStyle = "#293373";
-      let catalogFontSize = 20;
-      do {
-        ctx.font = "800 " + catalogFontSize + "px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
-        catalogFontSize -= 1;
-      } while (ctx.measureText(data.catalogLabel).width > 220 && catalogFontSize > 12);
-      ctx.textAlign = "center";
-      ctx.fillText(data.catalogLabel, 1210, 718);
-      ctx.textAlign = "left";
+      ctx.strokeRect(1092, 358, 238, 238);
+      if (qrDrawable) ctx.drawImage(qrDrawable, 1092, 358, 238, 238);
+      const drawActionRow = (icon, text, y) => {
+        ctx.fillStyle = "#ffffff";
+        drawRoundRect(ctx, 1088, y, 246, 40, 8);
+        ctx.fill();
+        ctx.strokeStyle = "rgba(41, 51, 115, 0.16)";
+        ctx.lineWidth = 2;
+        drawRoundRect(ctx, 1088, y, 246, 40, 8);
+        ctx.stroke();
+        drawContain(ctx, icon, 1104, y + 7, 26, 26);
+        ctx.fillStyle = "#293373";
+        ctx.font = "850 18px 'Noto Sans KR', 'Segoe UI', Arial, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(text, 1230, y + 27);
+        ctx.textAlign = "left";
+      };
+      drawActionRow(brochureIcon, data.catalogLabel, 616);
+      drawActionRow(instagramIcon, "인스타그램", 668);
+      drawActionRow(facebookIcon, "페이스북", 720);
+      drawActionRow(blogIcon, "블로그", 772);
+      drawActionRow(githubIcon, "깃허브", 824);
+      drawActionRow(threadsIcon, "쓰레드", 876);
 
       return new Promise((resolve) => canvas.toBlob(resolve, "image/png", 0.95));
     }
