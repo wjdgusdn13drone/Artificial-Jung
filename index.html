@@ -540,72 +540,86 @@
       }
 
       main {
-        min-height: calc(100svh - 22px);
+        min-height: auto;
         display: flex;
         align-items: stretch;
       }
 
       .business-card {
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: 1fr;
         grid-template-areas:
-          "brand photo"
-          "identity identity"
-          "qr qr"
-          "contacts contacts"
-          "buttons buttons";
-        grid-template-rows: auto minmax(216px, auto) auto minmax(224px, auto) auto;
-        gap: 12px;
-        height: calc(100svh - 22px);
-        min-height: 720px;
-        padding: 20px 16px 14px;
+          "brand"
+          "photo"
+          "identity"
+          "qr"
+          "contacts"
+          "buttons";
+        grid-template-rows: none;
+        gap: 18px;
+        height: auto;
+        min-height: auto;
+        padding: 22px 16px 18px;
         border-radius: 28px;
+        overflow: visible;
       }
 
-      .brand-logo { width: min(155px, 52vw); }
+      .brand { justify-self: center; }
+
+      .brand-logo { width: min(190px, 64vw); }
 
       .photo-box {
-        justify-self: end;
-        align-self: start;
-        width: clamp(118px, 33vw, 154px);
+        justify-self: center;
+        align-self: center;
+        width: clamp(142px, 44vw, 178px);
         border-radius: 22px;
       }
 
-      .name { font-size: clamp(42px, 14vw, 62px); }
+      .identity {
+        min-height: auto;
+        text-align: left;
+      }
+
+      .name { font-size: clamp(50px, 16vw, 68px); }
 
       .role {
         font-size: clamp(21px, 6.5vw, 28px);
         margin-top: 12px;
-        min-height: 64px;
+        min-height: auto;
       }
 
       .headline {
         margin-top: 16px;
-        font-size: clamp(23px, 6.8vw, 30px);
+        font-size: clamp(24px, 7vw, 32px);
         line-height: 1.22;
         font-weight: 950;
         color: var(--deep-brand);
-        min-height: 74px;
+        min-height: auto;
       }
 
       .sub {
         margin-top: 12px;
-        font-size: clamp(16px, 4.45vw, 19px);
+        font-size: clamp(16px, 4.35vw, 19px);
         line-height: 1.55;
         font-weight: 760;
         color: #4b5563;
-        min-height: 90px;
+        min-height: auto;
+        -webkit-line-clamp: 5;
       }
 
       .qr-panel {
-        width: min(100%, 360px);
+        width: min(100%, 390px);
         justify-self: center;
         padding: 16px;
-        gap: 10px;
+        gap: 12px;
         border-radius: 24px;
-        min-height: 0;
+        min-height: auto;
+        max-width: none;
       }
 
-      .qr-box { width: min(62vw, 238px); border-radius: 20px; }
+      .qr-box {
+        width: min(76vw, 286px);
+        border-radius: 20px;
+      }
 
       .qr-title { font-size: 15px; }
 
@@ -636,7 +650,7 @@
       .contacts {
         padding: 12px 14px;
         border-radius: 22px;
-        min-height: 224px;
+        min-height: auto;
       }
 
       .buttons {
